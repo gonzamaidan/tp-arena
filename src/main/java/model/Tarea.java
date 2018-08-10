@@ -5,7 +5,10 @@ public class Tarea {
  String nombre;
  TipoTarea tipo;
  
- 
+ 	public Tarea ( String nombre, TipoTarea tipo) {
+ 		this.nombre=nombre;
+ 		this.tipo=tipo;
+ 	}
 	public String getNombre() {
 		return nombre;
 	}

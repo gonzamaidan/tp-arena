@@ -1,11 +1,19 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Asignacion {
 	Tarea tarea;
 	Estudiante estudiante;
 	List<Calificacion> notas;
+	
+	public Asignacion (Estudiante estudiante, Tarea tarea) {
+		this.tarea=tarea;
+		this.estudiante=estudiante;
+		this.notas = new ArrayList<Calificacion>();
+	}
+	
 	public Tarea getTarea() {
 		return tarea;
 	}
