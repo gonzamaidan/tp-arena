@@ -28,4 +28,8 @@ public class Asignacion {
 	public void quitarNota(Calificacion Nota) {
 		this.notas.remove(Nota);
 	}
+	
+	public boolean notaFinal() {
+		return notas.get(notas.size() - 1).estaAprobado();		
+	}
 }
