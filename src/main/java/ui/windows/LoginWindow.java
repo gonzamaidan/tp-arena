@@ -2,6 +2,7 @@ package ui.windows;
 
 import java.util.Optional;
 
+import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
@@ -10,10 +11,9 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import model.Estudiante;
-import model.repositories.EstudiantesRepository;
-import model.repositories.Repository;
 import ui.vm.LoginViewModel;
 
+@SuppressWarnings("serial")
 public class LoginWindow extends SimpleWindow<LoginViewModel> {
 
 	public LoginWindow(WindowOwner parent) {
@@ -28,10 +28,12 @@ public class LoginWindow extends SimpleWindow<LoginViewModel> {
 
 	@Override
 	protected void createFormPanel(Panel formPanel) {
+		Panel panel = new Panel(formPanel);
+		panel.setLayout(new ColumnLayout(2));
 		this.setTitle("Login estudiante");
 		
-		new Label(formPanel).setText("Legajo");
-		new TextBox(formPanel).bindValueToProperty("legajo");
+		new Label(panel).setText("Legajo");
+		new TextBox(panel).bindValueToProperty("legajo");
 	}
 
 	public void login() {
