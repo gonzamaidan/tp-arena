@@ -12,6 +12,7 @@ import org.uqbar.arena.windows.WindowOwner;
 
 import model.Estudiante;
 import ui.vm.LoginViewModel;
+import ui.vm.NotasViewModel;
 
 @SuppressWarnings("serial")
 public class LoginWindow extends SimpleWindow<LoginViewModel> {
@@ -22,15 +23,19 @@ public class LoginWindow extends SimpleWindow<LoginViewModel> {
 
 	@Override
 	protected void addActions(Panel actionPanel) {
-		new Button(actionPanel).setCaption("Login").onClick(this::login);
+		actionPanel.setLayout(new ColumnLayout(2));
+		new Button(actionPanel).setCaption("Login").onClick(this::login).setWidth(75);
+		new Button(actionPanel).setCaption("Salir").onClick(this::salir).setWidth(75);
 		
 	}
 
 	@Override
 	protected void createFormPanel(Panel formPanel) {
+		this.setTitle("Login estudiante");
+		formPanel.setLayout(new ColumnLayout(1));
+		
 		Panel panel = new Panel(formPanel);
 		panel.setLayout(new ColumnLayout(2));
-		this.setTitle("Login estudiante");
 		
 		new Label(panel).setText("Legajo");
 		new TextBox(panel).bindValueToProperty("legajo");
@@ -38,10 +43,16 @@ public class LoginWindow extends SimpleWindow<LoginViewModel> {
 
 	public void login() {
 		String legajo = this.getModelObject().getLegajo();
-		Optional<Estudiante> estudiante = this.getModelObject().getEstudiantes().all().stream().filter(est -> est.tieneLegajo(legajo)).findFirst();
-		if(estudiante.isPresent()) System.out.println("Logueado");
-		else System.out.println("No existe legajo");
-		
-		
+		Optional<Estudiante> estudiante = this.getModelObject().getEstudiantes().getEstudiante(legajo);
+		if(estudiante.isPresent()) {
+			NotasViewModel model = new NotasViewModel(legajo);
+			NotasWindow notasWindow = new NotasWindow(this, model);
+			notasWindow.open();
+		}
 	}
+	
+	public void salir() {
+		this.close();
+	}
+
 }

@@ -24,6 +24,8 @@ public class Fixture {
 		Asignacion parcialGonzaDiscreta = new Asignacion(gonza,parcialDiscreta);
 		Asignacion TpGonzaGestion = new Asignacion(gonza,tpGestionDD);
 		Asignacion TpGonzaArena = new Asignacion(gonza,tpDiseñoArena);
+		parcialGonzaSyO.agregarNota(new CalificacionNumerica(8));
+		parcialGonzaDiscreta.agregarNota(new CalificacionConceptual(NotaConceptual.M_MAS));
 		
 		Asignacion parcialAbduSyO = new Asignacion(abdu,parcialSyO);		
 		Asignacion parcialAbduDiscreta = new Asignacion(abdu,parcialDiscreta);

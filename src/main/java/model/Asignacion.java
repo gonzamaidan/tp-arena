@@ -37,7 +37,7 @@ public class Asignacion {
 		this.notas.remove(Nota);
 	}
 	
-	public boolean notaFinal() {
-		return notas.get(notas.size() - 1).estaAprobado();		
+	public Calificacion notaFinal() {
+		return notas.stream().reduce(new SinCalificacion(), (calificacion1, calificacion2) -> calificacion2);		
 	}
 }
